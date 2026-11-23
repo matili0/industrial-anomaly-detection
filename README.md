@@ -56,10 +56,10 @@ python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-The student weights are supplied separately as **`anomaly-students.zip`**. Extract
-it at the repository root to populate `models/student_<category>.pth`. The prepared
-local copy already contains these ignored files. No public bundle URL is configured
-yet. The ResNet18 teacher is downloaded by torchvision on first use.
+The five trained student checkpoints are included in `models/`. Cloning the
+repository provides the student weights needed for the demo. The frozen ResNet18
+teacher is downloaded automatically by torchvision on first use and cached locally.
+An Internet connection is therefore required for the first model load.
 
 Upload a product image, select the corresponding category and adjust the threshold.
 The app uses the **raw anomaly score**. The evaluation script additionally normalizes
@@ -77,7 +77,8 @@ python -m src.EFFICIENTAD_impl.efficientad_tests
 
 Despite its historical filename, this command **trains and evaluates** the models;
 it is not a unit-test command. It uses 50 epochs, batch size 16 and the five categories
-listed above. New weights go to `models/` and new plots to ignored `outputs/`.
+listed above. Training replaces the corresponding checkpoints in `models/`; save
+a copy first if you want to retain the supplied weights. New plots go to ignored `outputs/`.
 The README's recorded plots remain unchanged in `docs/images/`.
 
 ## Repository contents
@@ -86,7 +87,8 @@ The README's recorded plots remain unchanged in `docs/images/`.
 - `src/EFFICIENTAD_impl/`: teacher/student training, evaluation and plotting.
 - `src/utils/`: dataset loading and category configuration.
 - `docs/images/`: selected original experiment figures.
-- `models/`, `data/`: local runtime assets, excluded from Git.
+- `models/`: the five trained student checkpoints used by the app.
+- `data/`: optional MVTec AD training/evaluation data, excluded from Git.
 
 Checkpoint-format regression tests (no training or downloads):
 

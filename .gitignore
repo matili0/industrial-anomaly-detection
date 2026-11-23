@@ -26,3 +26,10 @@ Thumbs.db
 /cache/
 /data/*
 !/data/README.md
+
+# Reference student checkpoints shipped with the app
+!/models/student_bottle.pth
+!/models/student_cable.pth
+!/models/student_carpet.pth
+!/models/student_hazelnut.pth
+!/models/student_screw.pth
